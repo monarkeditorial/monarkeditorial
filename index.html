@@ -181,6 +181,41 @@ footer .wrap{padding-block:28px;display:flex;justify-content:space-between;gap:1
 .front.solo{grid-template-columns:minmax(0,1fr)}
 .is-off{opacity:.55;cursor:default}
 .mail{text-decoration:none}
+/* Color por medio */
+:root{--tint:#EDE8E0}
+body[data-view="travel"]{--tint:#E6E3CC}
+body[data-view="wellness"]{--tint:#DCE2E2}
+body[data-view="art"]{--tint:#EEDCD8}
+body[data-view="travel"] .mast,body[data-view="wellness"] .mast,body[data-view="art"] .mast{max-width:none;background:var(--accent);color:var(--paper);border-bottom:0}
+body[data-view="travel"] .mast .tag,body[data-view="wellness"] .mast .tag,body[data-view="art"] .mast .tag{color:var(--paper);opacity:.8}
+.guides{background:var(--tint)}
+.guides .btn{background:var(--rose);border-color:var(--rose);color:var(--paper)}
+.guides .btn:hover{background:var(--brown);border-color:var(--brown)}
+.guides .btn.ghost{background:none;color:var(--ink);border-color:var(--ink)}
+.cover{box-shadow:6px 6px 0 var(--paper)}
+/* Logo y Home */
+.brand{text-align:center;padding-block:24px 18px}
+.logo{font-family:var(--f-display);font-size:clamp(30px,4.6vw,48px);letter-spacing:.04em;text-decoration:none;color:var(--ink);line-height:1}
+.logo .lc{font-style:italic;font-weight:300;letter-spacing:0}
+.logo:hover{color:var(--accent)}
+.hintro{text-align:center;padding-block:28px 32px}
+.hintro .tag{font-style:italic;font-size:clamp(20px,2.4vw,26px);color:var(--muted);margin:0}
+.hsec{padding-bottom:48px}
+.hband{background:var(--accent);color:var(--paper)}
+.hband .wrap{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;padding-block:18px}
+.hband h2{font-size:clamp(26px,3.4vw,40px)}
+.hband h2 .lc{font-style:italic;font-weight:300}
+.hband a{color:var(--paper);text-decoration:none}
+.hband a:hover{text-decoration:underline;text-underline-offset:5px}
+.hgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;padding-top:28px}
+@media (max-width:900px){.hgrid{grid-template-columns:minmax(0,1fr)}}
+.hsoon{font-style:italic;color:var(--muted);margin:0;padding-top:24px}
+.igsec{background:var(--tint);border-top:1px solid var(--ink)}
+.igsec .wrap{padding-block:48px 56px;display:flex;flex-direction:column;gap:24px}
+.iggrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+@media (max-width:760px){.iggrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.igtile{aspect-ratio:1;max-width:100%;display:block}
+.igtile:hover{opacity:.85}
 </style>
 
 <style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
@@ -191,6 +226,7 @@ footer .wrap{padding-block:28px;display:flex;justify-content:space-between;gap:1
   <input name="form-name" value="contacto"><input name="bot-field"><input name="nombre"><input name="correo"><select name="tema"><option>x</option></select><textarea name="mensaje"></textarea>
 </form>
 <div class="topbar"><div class="wrap label"><span>Una creación de MONARK Editorial</span><span>Editado en Ciudad de México</span></div></div>
+<div class="brand"><a href="#home" class="logo" aria-label="MONARK Editorial, inicio">MONARK <span class="lc">Editorial</span></a></div>
 <header class="nav">
   <nav class="wrap tabs" aria-label="Secciones">
     <a class="tab" href="#about" data-v="about">About</a>
@@ -210,7 +246,7 @@ const BOOK='<svg viewBox="0 0 22 16" fill="none" stroke="currentColor" stroke-wi
 const C={olive:'#7A7538',brown:'#2E130D',rose:'#9B5458',ox:'#5A0E0E',slate:'#6F7B7D',sand:'#D9C8B1',ink:'#2A1410'};
 const PLATES=[[C.sand,C.olive],[C.sand,C.brown],[C.rose,C.brown],[C.olive,C.ox],[C.slate,C.brown],[C.sand,C.slate],[C.rose,C.ox]];
 const COVERS=['','alt','alt2'];
-function plate(a,b,h){return `background:radial-gradient(circle at 72% ${h||30}%, rgba(246,244,240,.35) 0 7%, transparent 7.5%),linear-gradient(180deg, ${a} 0 60%, ${b} 60% 100%)`}
+function plate(a,b,h){if(a==='#D9C8B1'||a===b)a='#9B5458';return `background:radial-gradient(circle at 72% ${h||30}%, rgba(246,244,240,.35) 0 7%, transparent 7.5%),linear-gradient(180deg, ${a} 0 60%, ${b} 60% 100%)`}
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 const MEDIA={
@@ -242,8 +278,8 @@ function imgBlock(s,i,cls){
   if(s.foto) return `<div class="plate ${cls}" ${s.cap?`data-cap="${esc(s.cap)}"`:''}><img src="${esc(s.foto)}" alt="${esc(s.cap||s.t)}" loading="lazy"></div>`;
   return `<div class="plate ${cls}" ${s.cap?`data-cap="Imagen · ${esc(s.cap)}"`:''} style="${plate(s.p[0],s.p[1],20+i*12)}"></div>`;
 }
-function storyHTML(s,i,size){
-  return `<button class="story" data-note="${i}">
+function storyHTML(s,i,size,m){
+  return `<button class="story" data-note="${i}"${m?` data-m="${m}"`:''}>
     ${size!=='sm'?imgBlock(s,i,size==='lg'?'tall':''):''}
     ${s.k?`<span class="label kicker">${esc(s.k)}</span>`:''}
     ${size==='lg'?`<h2>${esc(s.t)}</h2>`:`<h3>${esc(s.t)}</h3>`}
@@ -293,6 +329,23 @@ function viewMedium(key){
   return mast+`<nav class="subnav wrap label" aria-label="En esta sección">${links}</nav>`+front+guides+more;
 }
 
+function viewHome(){
+  const meds=[['travel','#7A7538'],['wellness','#4C585A'],['art','#5A0E0E']];
+  const pal=[['#9B5458','#7A7538'],['#D9C8B1','#2E130D'],['#6F7B7D','#5A0E0E'],['#9B5458','#2E130D'],['#7A7538','#5A0E0E'],['#D9C8B1','#4C585A']];
+  const ig=pal.map(p=>`<a class="igtile" href="https://www.instagram.com/monarkeditorial/" target="_blank" rel="noopener" aria-label="Ver @monarkeditorial en Instagram" style="background:linear-gradient(160deg, ${p[0]} 0 55%, ${p[1]} 55% 100%)"></a>`).join('');
+  return `
+  <section class="wrap hintro"><p class="tag">Good content fills a feed. Great content builds a world.</p></section>
+  ${meds.map(([k,c])=>{const M=MEDIA[k];const N=M.notes.slice(0,3);return `<section class="hsec" style="--accent:${c}">
+    <div class="hband"><div class="wrap"><a href="#${k}"><h2>${mastName(M.name)}</h2></a><a class="label" href="#${k}">Ver todo →</a></div></div>
+    <div class="wrap">${N.length?`<div class="hgrid">${N.map((s,i)=>storyHTML(s,i,'side',k)).join('')}</div>`:`<p class="hsoon">Próximamente. Las primeras notas están en camino.</p>`}</div>
+  </section>`}).join('')}
+  <section class="igsec"><div class="wrap">
+    <div class="sechead"><h2>@monarkeditorial</h2><p>Lo último en Instagram.</p></div>
+    <!-- Aquí va el widget del feed de Instagram -->
+    <div class="iggrid" id="ig-feed">${ig}</div>
+    <div><a class="btn" href="https://www.instagram.com/monarkeditorial/" target="_blank" rel="noopener">Seguir en Instagram</a></div>
+  </div></section>`;
+}
 function viewAbout(){
   const svc=[
    {h:'Escrito',l:['Newsletters','Blogs y Substack','Guías y publicaciones de marca','Notas de prensa con nivel editorial']},
@@ -350,11 +403,11 @@ function viewContact(){
 }
 
 function render(keepScroll){
-  const v=(location.hash||'#about').slice(1);
-  current=['about','travel','wellness','art','contact'].includes(v)?v:'about';
+  const v=(location.hash||'#home').slice(1);
+  current=['home','about','travel','wellness','art','contact'].includes(v)?v:'home';
   document.body.dataset.view=current;
   document.querySelectorAll('.tab').forEach(t=>{if(t.dataset.v===current)t.setAttribute('aria-current','page');else t.removeAttribute('aria-current')});
-  $('#main').innerHTML=current==='about'?viewAbout():current==='contact'?viewContact():viewMedium(current);
+  $('#main').innerHTML=current==='home'?viewHome():current==='about'?viewAbout():current==='contact'?viewContact():viewMedium(current);
   if(!keepScroll)window.scrollTo(0,0);
   if(window.createLemonSqueezy){try{window.createLemonSqueezy()}catch(_){}}
 }
@@ -362,25 +415,25 @@ function render(keepScroll){
 function openSheet(html){const s=$('#sheet');s.innerHTML=`<button class="close" data-close aria-label="Cerrar">×</button>`+html;$('#ov').hidden=false;document.body.style.overflow='hidden';s.querySelector('.close').focus()}
 function closeSheet(){$('#ov').hidden=true;document.body.style.overflow=''}
 
-function openNote(i){
-  const M=MEDIA[current],s=M.notes[i];if(!s)return;
+function openNote(i,m){
+  const key=m||current;const M=MEDIA[key],s=M.notes[i];if(!s)return;
   openSheet(`<span class="label" style="color:var(--accent)">${nameHTML(M.name)}${s.k?' · '+esc(s.k):''}</span>
    <h2>${esc(s.t)}</h2>${s.d?`<p class="dek">${esc(s.d)}</p>`:''}
    <span class="meta label">${BOOK}<span>|</span><span>Lectura de ${esc(s.m)} min</span></span>
    ${imgBlock(s,i,'tall')}
    <div class="body">${s.body.map(p=>`<p>${esc(p)}</p>`).join('')}</div>
-   ${M.guides.length?`<div><a class="btn ghost" href="#${current}" data-close data-goguides>Ver guías de ${nameHTML(M.name)}</a></div>`:''}`);
+   ${M.guides.length?`<div><a class="btn ghost" href="#${key}" data-close data-goguides>Ver guías de ${nameHTML(M.name)}</a></div>`:''}`);
 }
 
 document.addEventListener('click',e=>{
   const t=e.target.closest('[data-note],[data-close],[data-copy],[data-jump],.overlay');
   if(!t)return;
   if(t.matches('.overlay')&&e.target!==t)return;
-  if(t.dataset.note!==undefined)openNote(+t.dataset.note);
+  if(t.dataset.note!==undefined)openNote(+t.dataset.note,t.dataset.m);
   else if(t.dataset.jump){e.preventDefault();const el=document.getElementById(t.dataset.jump);if(el)el.scrollIntoView({behavior:'smooth'})}
   else if(t.dataset.copy){const v=t.dataset.copy;const done=()=>{t.textContent='Copiado';setTimeout(()=>t.textContent='Copiar',1600)};
     try{navigator.clipboard.writeText(v).then(done,()=>sel(t))}catch(_){sel(t)}}
-  else if(t.matches('[data-close],.overlay')){if(t.dataset.goguides!==undefined){e.preventDefault();closeSheet();const g=document.getElementById('guias');if(g)g.scrollIntoView({behavior:'smooth'})}else closeSheet()}
+  else if(t.matches('[data-close],.overlay')){if(t.dataset.goguides!==undefined&&document.getElementById('guias')){e.preventDefault();closeSheet();const g=document.getElementById('guias');if(g)g.scrollIntoView({behavior:'smooth'})}else closeSheet()}
 });
 function sel(btn){const m=btn.previousElementSibling;const r=document.createRange();r.selectNodeContents(m);const s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Selecciona y copia'}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#ov').hidden)closeSheet()});
