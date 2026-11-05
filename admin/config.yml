@@ -1,0 +1,111 @@
+# Panel de redacción de MONARK Editorial (Decap CMS)
+backend:
+  name: github
+  repo: monarkeditorial/monarkeditorial
+  branch: main
+
+locale: "es"
+site_url: https://www.monarkeditorial.com
+display_url: https://www.monarkeditorial.com
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "medios"
+    label: "Medios"
+    editor:
+      preview: false
+    files:
+      - name: "travel"
+        label: "The Travel People"
+        file: "data/travel.json"
+        fields:
+          - label: "Notas"
+            name: "notas"
+            label_singular: "nota"
+            widget: "list"
+            summary: "{{fields.titulo}}"
+            hint: "La primera nota de la lista es la principal de la portada. Arrastra para cambiar el orden."
+            fields:
+              - {label: "Título", name: "titulo", widget: "string"}
+              - {label: "Sección", name: "seccion", widget: "string", hint: "Ej. Ciudades, Rutas, Mesa", required: false}
+              - {label: "Bajada", name: "bajada", widget: "text", hint: "Una o dos frases debajo del título", required: false}
+              - {label: "Minutos de lectura", name: "minutos", widget: "number", value_type: "int", default: 3}
+              - {label: "Foto", name: "foto", widget: "image", required: false}
+              - {label: "Pie de foto", name: "pie_de_foto", widget: "string", required: false}
+              - {label: "Texto", name: "cuerpo", widget: "text", hint: "Deja una línea en blanco entre párrafos"}
+          - label: "Guías"
+            name: "guias"
+            label_singular: "guía"
+            widget: "list"
+            summary: "{{fields.titulo}} · ${{fields.precio}}"
+            fields:
+              - {label: "Título", name: "titulo", widget: "string"}
+              - {label: "Edición", name: "edicion", widget: "string", hint: "Ej. Edición 01", required: false}
+              - {label: "Descripción", name: "descripcion", widget: "text", required: false}
+              - {label: "Precio en MXN", name: "precio", widget: "number", value_type: "int"}
+              - {label: "Páginas", name: "paginas", widget: "number", value_type: "int", required: false}
+              - {label: "Portada", name: "portada", widget: "image", required: false, hint: "Opcional. Sin portada se usa la de color del medio"}
+              - {label: "Link de compra (Lemon Squeezy)", name: "link_de_compra", widget: "string", required: false, hint: "Pega el link de checkout del producto. Vacío = el botón dice Próximamente"}
+      - name: "wellness"
+        label: "The Wellness People"
+        file: "data/wellness.json"
+        fields:
+          - label: "Notas"
+            name: "notas"
+            label_singular: "nota"
+            widget: "list"
+            summary: "{{fields.titulo}}"
+            hint: "La primera nota de la lista es la principal de la portada. Arrastra para cambiar el orden."
+            fields:
+              - {label: "Título", name: "titulo", widget: "string"}
+              - {label: "Sección", name: "seccion", widget: "string", hint: "Ej. Ciudades, Rutas, Mesa", required: false}
+              - {label: "Bajada", name: "bajada", widget: "text", hint: "Una o dos frases debajo del título", required: false}
+              - {label: "Minutos de lectura", name: "minutos", widget: "number", value_type: "int", default: 3}
+              - {label: "Foto", name: "foto", widget: "image", required: false}
+              - {label: "Pie de foto", name: "pie_de_foto", widget: "string", required: false}
+              - {label: "Texto", name: "cuerpo", widget: "text", hint: "Deja una línea en blanco entre párrafos"}
+          - label: "Guías"
+            name: "guias"
+            label_singular: "guía"
+            widget: "list"
+            summary: "{{fields.titulo}} · ${{fields.precio}}"
+            fields:
+              - {label: "Título", name: "titulo", widget: "string"}
+              - {label: "Edición", name: "edicion", widget: "string", hint: "Ej. Edición 01", required: false}
+              - {label: "Descripción", name: "descripcion", widget: "text", required: false}
+              - {label: "Precio en MXN", name: "precio", widget: "number", value_type: "int"}
+              - {label: "Páginas", name: "paginas", widget: "number", value_type: "int", required: false}
+              - {label: "Portada", name: "portada", widget: "image", required: false, hint: "Opcional. Sin portada se usa la de color del medio"}
+              - {label: "Link de compra (Lemon Squeezy)", name: "link_de_compra", widget: "string", required: false, hint: "Pega el link de checkout del producto. Vacío = el botón dice Próximamente"}
+      - name: "art"
+        label: "The Art People"
+        file: "data/art.json"
+        fields:
+          - label: "Notas"
+            name: "notas"
+            label_singular: "nota"
+            widget: "list"
+            summary: "{{fields.titulo}}"
+            hint: "La primera nota de la lista es la principal de la portada. Arrastra para cambiar el orden."
+            fields:
+              - {label: "Título", name: "titulo", widget: "string"}
+              - {label: "Sección", name: "seccion", widget: "string", hint: "Ej. Ciudades, Rutas, Mesa", required: false}
+              - {label: "Bajada", name: "bajada", widget: "text", hint: "Una o dos frases debajo del título", required: false}
+              - {label: "Minutos de lectura", name: "minutos", widget: "number", value_type: "int", default: 3}
+              - {label: "Foto", name: "foto", widget: "image", required: false}
+              - {label: "Pie de foto", name: "pie_de_foto", widget: "string", required: false}
+              - {label: "Texto", name: "cuerpo", widget: "text", hint: "Deja una línea en blanco entre párrafos"}
+          - label: "Guías"
+            name: "guias"
+            label_singular: "guía"
+            widget: "list"
+            summary: "{{fields.titulo}} · ${{fields.precio}}"
+            fields:
+              - {label: "Título", name: "titulo", widget: "string"}
+              - {label: "Edición", name: "edicion", widget: "string", hint: "Ej. Edición 01", required: false}
+              - {label: "Descripción", name: "descripcion", widget: "text", required: false}
+              - {label: "Precio en MXN", name: "precio", widget: "number", value_type: "int"}
+              - {label: "Páginas", name: "paginas", widget: "number", value_type: "int", required: false}
+              - {label: "Portada", name: "portada", widget: "image", required: false, hint: "Opcional. Sin portada se usa la de color del medio"}
+              - {label: "Link de compra (Lemon Squeezy)", name: "link_de_compra", widget: "string", required: false, hint: "Pega el link de checkout del producto. Vacío = el botón dice Próximamente"}

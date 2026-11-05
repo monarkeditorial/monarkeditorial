@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="MONARK Editorial. Good content fills a feed. Great content builds a world.">
+<title>MONARK Editorial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: una sola plataforma, cabecera de revista que cambia de nombre por medio; cada medio tiene su color de la paleta de The Travel People. */
+:root{
+  --paper:#F6F4F0; --paper-2:#EDE8E0; --ink:#2A1410; --muted:#6B5F58; --hair:#D8D0C5;
+  --sand:#D9C8B1; --olive:#7A7538; --brown:#2E130D; --rose:#9B5458; --oxblood:#5A0E0E; --slate:#6F7B7D; --slate-d:#4C585A;
+  --accent:var(--brown);
+  --f-display:"Newsreader", "Times New Roman", Georgia, serif;
+  --f-body:"Cormorant Garamond", "Garamond", Georgia, serif;
+  color-scheme:light;
+}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:20px;line-height:1.5;-webkit-font-smoothing:antialiased}
+body[data-view="travel"]{--accent:var(--olive)}
+body[data-view="wellness"]{--accent:var(--slate-d)}
+body[data-view="art"]{--accent:var(--oxblood)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+*{box-sizing:border-box}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.label{font-family:var(--f-display);font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:400}
+h1,h2,h3,h4{font-family:var(--f-display);font-weight:400;margin:0;text-wrap:balance;line-height:1.12}
+
+/* Barra superior + pestañas */
+.topbar{border-bottom:1px solid var(--hair)}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:8px;color:var(--muted);font-size:clamp(9px,2.4vw,11px);letter-spacing:.12em}
+.topbar span{white-space:nowrap}
+@media (max-width:420px){.topbar span + span{display:none}.topbar .wrap{justify-content:center}}
+header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--ink)}
+.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;justify-content:center}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;background:none;border:0;padding:16px 18px 14px;font-family:var(--f-display);font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid transparent;text-decoration:none;white-space:nowrap}
+.tab:hover{color:var(--ink)}
+.tab[aria-current="page"]{color:var(--ink);border-bottom-color:var(--accent)}
+.tab .lc{text-transform:lowercase;letter-spacing:.02em;font-style:italic}
+@media (max-width:760px){.tabs{justify-content:flex-start}.tab{padding:14px 12px 12px;font-size:13px}}
+
+/* Cabecera de revista */
+.mast{text-align:center;padding-block:clamp(36px,6vw,72px) clamp(28px,4vw,44px);border-bottom:1px solid var(--hair)}
+.mast h1{font-size:clamp(46px,9vw,124px);letter-spacing:-.01em;font-weight:400;line-height:.95}
+.mast h1 .lc{font-style:italic;font-weight:300}
+.mast .tag{margin-top:14px;font-family:var(--f-body);font-style:italic;font-size:clamp(20px,2.4vw,26px);color:var(--muted)}
+.mast .mini{margin-top:18px;color:var(--accent)}
+.subnav{display:flex;justify-content:center;gap:28px;padding-block:14px;border-bottom:1px solid var(--ink)}
+.subnav a{text-decoration:none;color:var(--muted)}
+.subnav a:hover{color:var(--ink)}
+
+/* Imágenes: placas de color mientras llegan las fotos */
+.plate{position:relative;aspect-ratio:4/3;max-width:100%;overflow:hidden;background:var(--sand)}
+.plate::after{content:attr(data-cap);position:absolute;left:12px;bottom:10px;font-family:var(--f-display);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,244,240,.85)}
+.plate.tall{aspect-ratio:3/2}
+
+/* Portada del medio */
+.front{display:grid;grid-template-columns:minmax(0,1.55fr) 1px minmax(0,1fr);gap:32px;padding-block:36px}
+.vrule{background:var(--ink)}
+.story{display:flex;flex-direction:column;gap:14px;text-align:left;background:none;border:0;padding:0}
+.story .kicker{color:var(--accent)}
+.story h2{font-size:clamp(30px,4vw,50px)}
+.story h3{font-size:clamp(24px,2.4vw,30px)}
+.story p{margin:0;color:var(--muted);max-width:62ch}
+.story:hover h2,.story:hover h3{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}
+.meta{display:flex;align-items:center;gap:10px;color:var(--muted)}
+.meta svg{width:22px;height:16px;flex:0 0 auto}
+.side{display:flex;flex-direction:column;gap:28px}
+.side .story + .story{border-top:1px solid var(--ink);padding-top:28px}
+@media (max-width:860px){.front{grid-template-columns:minmax(0,1fr)}.vrule{height:1px}}
+
+/* Guías */
+.guides{background:var(--paper-2);border-block:1px solid var(--ink)}
+.guides .wrap{padding-block:48px 56px;display:flex;flex-direction:column;gap:28px}
+.sechead{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;border-top:3px solid var(--ink);padding-top:12px}
+.sechead h2{font-size:clamp(28px,3.4vw,40px)}
+.sechead p{margin:0;font-style:italic;color:var(--muted)}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+@media (max-width:900px){.grid3{grid-template-columns:minmax(0,1fr)}}
+.guide{display:flex;flex-direction:column;gap:16px}
+.cover{aspect-ratio:3/4;max-width:100%;background:var(--accent);color:var(--paper);display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;padding:28px 22px;box-shadow:6px 6px 0 var(--sand)}
+.cover .ct{font-family:var(--f-display);font-size:clamp(30px,3vw,40px);font-style:italic;font-weight:300;line-height:1.05;text-wrap:balance}
+.cover .cb{font-family:var(--f-display);font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.85}
+.cover .cb .lc{text-transform:lowercase;font-style:italic;letter-spacing:.02em}
+.cover.alt{background:var(--brown)}
+.cover.alt2{background:var(--rose)}
+.guide h3{font-size:24px}
+.guide p{margin:0;color:var(--muted)}
+.buyrow{display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid var(--hair);padding-top:14px;flex-wrap:wrap}
+.price{font-family:var(--f-display);font-size:22px;font-variant-numeric:tabular-nums}
+.price small{font-size:13px;letter-spacing:.12em;color:var(--muted);margin-left:4px}
+.btn{background:var(--ink);color:var(--paper);border:1px solid var(--ink);padding:12px 18px;font-family:var(--f-display);font-size:13px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn:hover{background:var(--accent);border-color:var(--accent)}
+.btn.ghost{background:none;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:var(--paper)}
+
+/* Más notas */
+.more{padding-block:48px 64px;display:flex;flex-direction:column;gap:28px}
+.notes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0}
+.notes .story{padding:28px 0;border-bottom:1px solid var(--ink)}
+.notes .story:nth-child(odd){padding-right:32px;border-right:1px solid var(--ink)}
+.notes .story:nth-child(even){padding-left:32px}
+@media (max-width:760px){.notes{grid-template-columns:minmax(0,1fr)}.notes .story:nth-child(odd){padding-right:0;border-right:0}.notes .story:nth-child(even){padding-left:0}}
+
+/* About */
+.intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;padding-block:48px;border-bottom:1px solid var(--ink)}
+.intro .big{font-family:var(--f-display);font-size:clamp(30px,3.6vw,46px);line-height:1.15;font-weight:300}
+.intro .big em{font-style:italic}
+.intro .copy{display:flex;flex-direction:column;gap:16px}
+.intro .copy p{margin:0;max-width:60ch}
+@media (max-width:860px){.intro{grid-template-columns:minmax(0,1fr);gap:24px}}
+.services{padding-block:48px;display:flex;flex-direction:column;gap:28px}
+.svc{display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--ink);padding-top:16px}
+.svc h3{font-size:32px;font-style:italic;font-weight:300}
+.svc ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column}
+.svc li{padding:8px 0;border-bottom:1px solid var(--hair)}
+.media{padding-block:8px 64px;display:flex;flex-direction:column;gap:28px}
+.medium{display:flex;flex-direction:column;gap:14px;text-decoration:none;background:none;border:0;padding:0;text-align:left}
+.medium .sw{aspect-ratio:16/10;max-width:100%;display:flex;align-items:center;justify-content:center;color:var(--paper);font-family:var(--f-display);font-size:clamp(26px,2.6vw,34px);text-align:center;padding:16px}
+.medium .sw .lc{font-style:italic;font-weight:300}
+.medium p{margin:0;color:var(--muted)}
+.medium:hover .label{text-decoration:underline;text-underline-offset:4px}
+
+/* Contacto */
+.contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:56px;padding-block:48px 72px}
+@media (max-width:860px){.contact{grid-template-columns:minmax(0,1fr);gap:40px}}
+.team{display:flex;flex-direction:column}
+.person{display:flex;flex-direction:column;gap:2px;padding:18px 0;border-bottom:1px solid var(--hair)}
+.person:first-child{border-top:3px solid var(--ink)}
+.person .n{font-family:var(--f-display);font-size:26px}
+.person .r{color:var(--muted);font-style:italic}
+.mailrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:4px}
+.mail{font-family:var(--f-display);font-size:16px;user-select:all;word-break:break-all}
+.copybtn{background:none;border:1px solid var(--hair);padding:3px 10px;font-family:var(--f-display);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.copybtn:hover{border-color:var(--ink);color:var(--ink)}
+form{display:flex;flex-direction:column;gap:18px;border-top:3px solid var(--ink);padding-top:18px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-family:var(--f-display);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+input,select,textarea{font:inherit;font-size:19px;color:var(--ink);background:var(--paper);border:0;border-bottom:1px solid var(--ink);padding:8px 2px;border-radius:0;width:100%}
+textarea{border:1px solid var(--ink);padding:12px;min-height:170px;resize:vertical}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}
+@media (max-width:600px){.two{grid-template-columns:minmax(0,1fr)}}
+.note{font-style:italic;color:var(--muted);margin:0}
+.ok{border-left:3px solid var(--accent);padding:10px 14px;background:var(--paper-2);margin:0}
+
+/* Lector y caja */
+.overlay{position:fixed;inset:0;z-index:50;background:rgba(42,20,16,.45);display:flex;justify-content:center;align-items:flex-start;overflow-y:auto;padding:max(24px,env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) 24px max(12px,env(safe-area-inset-left,0px))}
+.sheet{background:var(--paper);width:100%;max-width:760px;padding:clamp(22px,5vw,56px);position:relative;display:flex;flex-direction:column;gap:18px}
+.close{position:absolute;top:12px;right:12px;background:none;border:1px solid var(--hair);width:38px;height:38px;font-size:20px;line-height:1}
+.close:hover{border-color:var(--ink)}
+.sheet h2{font-size:clamp(32px,5vw,52px)}
+.sheet .dek{font-style:italic;font-size:23px;color:var(--muted);margin:0}
+.sheet .body p{margin:0 0 1em;max-width:64ch}
+.sheet .body p:first-child::first-letter{font-family:var(--f-display);float:left;font-size:3.4em;line-height:.85;padding:6px 8px 0 0;color:var(--accent)}
+.sum{display:flex;gap:18px;align-items:center;border-block:1px solid var(--hair);padding-block:14px}
+.sum .cover{width:84px;flex:0 0 84px;padding:10px 6px;box-shadow:none}
+.sum .cover .ct{font-size:13px}
+.sum .cover .cb{font-size:7px}
+
+footer{border-top:1px solid var(--ink);background:var(--paper)}
+footer .wrap{padding-block:28px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--muted)}
+.flinks{display:flex;gap:20px;flex-wrap:wrap}
+.flinks a,.social a{text-decoration:none;color:var(--ink)}
+.flinks a:hover,.social a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:4px}
+.social{display:flex;flex-direction:column;gap:0;margin-top:36px;border-top:3px solid var(--ink)}
+.social a{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid var(--hair);font-family:var(--f-display);font-size:20px}
+.social a span{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);align-self:center}
+.sample{color:var(--rose)}
+@media (prefers-reduced-motion:no-preference){main{animation:in .35s ease-out}@keyframes in{from{opacity:.4}to{opacity:1}}}
+.soon{display:flex;flex-direction:column;gap:22px;align-items:center;text-align:center;padding-block:56px 88px}
+.soon .big{font-family:var(--f-display);font-weight:300;font-size:clamp(26px,3.2vw,40px);line-height:1.2;max-width:28ch;margin:0;text-wrap:balance}
+.soonlinks{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.plate img{width:100%;height:100%;object-fit:cover;display:block}
+.cover.photo{padding:0;background:var(--sand)}
+.cover.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.front.solo{grid-template-columns:minmax(0,1fr)}
+.is-off{opacity:.55;cursor:default}
+.mail{text-decoration:none}
+</style>
+
+<style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
+</head>
+<body>
+<form name="contacto" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input name="form-name" value="contacto"><input name="bot-field"><input name="nombre"><input name="correo"><select name="tema"><option>x</option></select><textarea name="mensaje"></textarea>
+</form>
+<div class="topbar"><div class="wrap label"><span>Una creación de MONARK Editorial</span><span>Editado en Ciudad de México</span></div></div>
+<header class="nav">
+  <nav class="wrap tabs" aria-label="Secciones">
+    <a class="tab" href="#about" data-v="about">About</a>
+    <a class="tab" href="#travel" data-v="travel">The <span class="lc">travel</span> People</a>
+    <a class="tab" href="#wellness" data-v="wellness">The <span class="lc">wellness</span> People</a>
+    <a class="tab" href="#art" data-v="art">The <span class="lc">art</span> People</a>
+    <a class="tab" href="#contact" data-v="contact">Contact</a>
+  </nav>
+</header>
+<main id="main"></main>
+<footer><div class="wrap label"><span>MONARK Editorial · monarkeditorial.com</span>
+  <nav class="flinks" aria-label="Redes"><a href="https://www.instagram.com/monarkeditorial/" target="_blank" rel="noopener">@monarkeditorial</a><a href="https://www.instagram.com/monarkpr/" target="_blank" rel="noopener">@monarkpr</a><a href="https://monarkpr.com" target="_blank" rel="noopener">monarkpr.com</a></nav></div></footer>
+<div class="overlay" id="ov" hidden><div class="sheet" id="sheet" role="dialog" aria-modal="true"></div></div>
+
+<script>
+const BOOK='<svg viewBox="0 0 22 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M11 3C8 1 4 1 1 2v12c3-1 7-1 10 1 3-2 7-2 10-1V2c-3-1-7-1-10 1zM11 3v12"/></svg>';
+const C={olive:'#7A7538',brown:'#2E130D',rose:'#9B5458',ox:'#5A0E0E',slate:'#6F7B7D',sand:'#D9C8B1',ink:'#2A1410'};
+const PLATES=[[C.sand,C.olive],[C.sand,C.brown],[C.rose,C.brown],[C.olive,C.ox],[C.slate,C.brown],[C.sand,C.slate],[C.rose,C.ox]];
+const COVERS=['','alt','alt2'];
+function plate(a,b,h){return `background:radial-gradient(circle at 72% ${h||30}%, rgba(246,244,240,.35) 0 7%, transparent 7.5%),linear-gradient(180deg, ${a} 0 60%, ${b} 60% 100%)`}
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+const MEDIA={
+ travel:{name:'travel',tag:'Curated for the Curious',blurb:'Un address book para quienes saben dónde buscar. Lugares excepcionales y las historias detrás de cada dirección.',notes:[],guides:[]},
+ wellness:{name:'wellness',tag:'Curated for the Unhurried',blurb:'Lugares, rituales y hábitos para bajar el ritmo. Bienestar con criterio, sin promesas milagrosas.',notes:[],guides:[]},
+ art:{name:'art',tag:'Curated for the Collectors',blurb:'Galerías, talleres, ferias y piezas. Para quienes miran con atención y quieren vivir con arte.',notes:[],guides:[]}
+};
+const TEAM=[
+ {n:'Contacto',r:'Proyectos y servicios para marcas',e:'contacto@monarkpr.co'},
+ {n:'Editorial',r:'Notas, guías y colaboraciones',e:'editorial@monarkpr.co'}
+];
+
+const $=s=>document.querySelector(s);
+const mx=n=>'$'+Number(n||0).toLocaleString('es-MX');
+const nameHTML=n=>`The <span class="lc">${n}</span> People`;
+const mastName=n=>`THE <span class="lc">${n}</span> PEOPLE`;
+let current='about';
+
+function adapt(key,data){
+  const M=MEDIA[key];
+  M.notes=(data.notas||[]).filter(n=>n&&n.titulo).map((n,i)=>({
+    t:n.titulo,k:n.seccion||'',d:n.bajada||'',m:n.minutos||3,foto:n.foto||'',cap:n.pie_de_foto||'',
+    p:PLATES[i%PLATES.length],body:String(n.cuerpo||'').split(/\n\s*\n/).map(x=>x.trim()).filter(Boolean)}));
+  M.guides=(data.guias||[]).filter(g=>g&&g.titulo).map((g,i)=>({
+    t:g.titulo,e:g.edicion||'',d:g.descripcion||'',pr:g.precio,pg:g.paginas,portada:g.portada||'',url:g.link_de_compra||'',c:COVERS[i%3]}));
+}
+
+function imgBlock(s,i,cls){
+  if(s.foto) return `<div class="plate ${cls}" ${s.cap?`data-cap="${esc(s.cap)}"`:''}><img src="${esc(s.foto)}" alt="${esc(s.cap||s.t)}" loading="lazy"></div>`;
+  return `<div class="plate ${cls}" ${s.cap?`data-cap="Imagen · ${esc(s.cap)}"`:''} style="${plate(s.p[0],s.p[1],20+i*12)}"></div>`;
+}
+function storyHTML(s,i,size){
+  return `<button class="story" data-note="${i}">
+    ${size!=='sm'?imgBlock(s,i,size==='lg'?'tall':''):''}
+    ${s.k?`<span class="label kicker">${esc(s.k)}</span>`:''}
+    ${size==='lg'?`<h2>${esc(s.t)}</h2>`:`<h3>${esc(s.t)}</h3>`}
+    ${size!=='side'&&s.d?`<p>${esc(s.d)}</p>`:''}
+    <span class="meta label">${BOOK}<span>|</span><span>Lectura de ${esc(s.m)} min</span></span>
+  </button>`;
+}
+function coverHTML(g,n){
+  if(g.portada) return `<div class="cover photo"><img src="${esc(g.portada)}" alt="Portada de ${esc(g.t)}"></div>`;
+  return `<div class="cover ${g.c}"><span class="cb">${mastName(n)}</span><span class="ct">${esc(g.t)}</span><span class="cb">${esc(g.e)}</span></div>`;
+}
+function soonHTML(M){
+  return `<section class="wrap soon">
+    <span class="label" style="color:var(--accent)">Próximamente</span>
+    <p class="big">${M.blurb}</p>
+    <p class="note">Las primeras notas y guías descargables están en camino.</p>
+    <div class="soonlinks"><a class="btn" href="https://www.instagram.com/monarkeditorial/" target="_blank" rel="noopener">Síguenos en @monarkeditorial</a><a class="btn ghost" href="#contact">Escríbenos</a></div>
+  </section>`;
+}
+
+function viewMedium(key){
+  const M=MEDIA[key];const N=M.notes,G=M.guides;
+  const mast=`<section class="mast wrap"><h1>${mastName(M.name)}</h1><p class="tag">${M.tag}</p></section>`;
+  if(!N.length&&!G.length) return mast+soonHTML(M);
+  const links=[N.length&&'<a href="#'+key+'" data-jump="notas">Notas</a>',G.length&&'<a href="#'+key+'" data-jump="guias">Guías</a>',N.length>3&&'<a href="#'+key+'" data-jump="todas">Todas las notas</a>'].filter(Boolean).join('');
+  let front='';
+  if(N.length){
+    const side=N.slice(1,3);
+    front=`<div class="wrap" id="notas"><div class="front ${side.length?'':'solo'}">
+      ${storyHTML(N[0],0,'lg')}
+      ${side.length?`<div class="vrule"></div><div class="side">${side.map((s,j)=>storyHTML(s,j+1,'side')).join('')}</div>`:''}
+    </div></div>`;
+  }
+  const guides=G.length?`<section class="guides" id="guias"><div class="wrap">
+    <div class="sechead"><h2>Guías</h2><p>Descargables en PDF. Pagas y se descargan al instante.</p></div>
+    <div class="grid3">${G.map((g,i)=>`
+      <article class="guide">${coverHTML(g,M.name)}
+        <h3>${esc(g.t)}</h3>${g.d?`<p>${esc(g.d)}</p>`:''}
+        <div class="buyrow"><span class="price">${g.pr?mx(g.pr)+'<small>MXN</small>':''}</span>${g.pg?`<span class="label" style="color:var(--muted)">${esc(g.pg)} págs · PDF</span>`:''}
+        ${g.url?`<a class="btn lemonsqueezy-button" href="${esc(g.url)}">Comprar y descargar</a>`:`<span class="btn ghost is-off" aria-disabled="true">Próximamente</span>`}</div>
+      </article>`).join('')}</div>
+  </div></section>`:'';
+  const more=N.length>3?`<section class="wrap more" id="todas">
+    <div class="sechead"><h2>Notas</h2><p>Abiertas para todos.</p></div>
+    <div class="notes">${N.map((s,i)=>storyHTML(s,i,'sm')).join('')}</div>
+  </section>`:'<div style="height:48px"></div>';
+  return mast+`<nav class="subnav wrap label" aria-label="En esta sección">${links}</nav>`+front+guides+more;
+}
+
+function viewAbout(){
+  const svc=[
+   {h:'Escrito',l:['Newsletters','Blogs y Substack','Guías y publicaciones de marca','Notas de prensa con nivel editorial']},
+   {h:'Foto',l:['Dirección creativa','Producción','Edición y retoque','Bancos de imagen para marca']},
+   {h:'Video',l:['Producción','Edición','Piezas para redes','Cápsulas de marca']}
+  ];
+  return `
+  <section class="mast wrap"><h1>MONARK <span class="lc">Editorial</span></h1><p class="tag">Good content fills a feed. Great content builds a world.</p></section>
+  <section class="wrap intro">
+    <p class="big">En un mundo de contenido infinito, la originalidad, el criterio editorial y un punto de vista propio <em>importan más que nunca.</em></p>
+    <div class="copy">
+      <p>MONARK Editorial lleva la sensibilidad de las publicaciones de lujo a la comunicación de las marcas.</p>
+      <p>Abordamos cada marca como una publicación, con su propia voz, su propia perspectiva e historias que vale la pena contar.</p>
+      <div><a class="btn ghost" href="#contact">Hablemos de tu marca</a></div>
+    </div>
+  </section>
+  <section class="wrap services">
+    <div class="sechead"><h2>Servicios para marcas</h2><p>Por proyecto o mensual.</p></div>
+    <div class="grid3">${svc.map(s=>`<div class="svc"><h3>${s.h}</h3><ul>${s.l.map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('')}</div>
+  </section>
+  <section class="wrap media">
+    <div class="sechead"><h2>Nuestros medios</h2><p>Hechos y publicados por MONARK Editorial.</p></div>
+    <div class="grid3">${[['travel',C.olive],['wellness','#4C585A'],['art',C.ox]].map(([k,c])=>`
+      <a class="medium" href="#${k}"><div class="sw" style="background:${c}"><span>${mastName(k)}</span></div>
+      <span class="label" style="color:${c}">${MEDIA[k].tag}</span><p>${MEDIA[k].blurb}</p></a>`).join('')}</div>
+  </section>`;
+}
+
+function viewContact(){
+  return `
+  <section class="mast wrap"><h1>Contact</h1><p class="tag">Proyectos, colaboraciones y guías</p></section>
+  <section class="wrap contact">
+    <div class="team">${TEAM.map(p=>`<div class="person"><span class="n">${p.n}</span><span class="r">${p.r}</span>
+      <span class="mailrow"><a class="mail" href="mailto:${p.e}">${p.e}</a><button class="copybtn" data-copy="${p.e}">Copiar</button></span></div>`).join('')}
+      <div class="social">
+        <a href="https://www.instagram.com/monarkeditorial/" target="_blank" rel="noopener">@monarkeditorial <span>Instagram</span></a>
+        <a href="https://www.instagram.com/monarkpr/" target="_blank" rel="noopener">@monarkpr <span>Instagram</span></a>
+        <a href="https://monarkpr.com" target="_blank" rel="noopener">monarkpr.com <span>MONARK PR</span></a>
+      </div></div>
+    <form id="cform" name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+      <input type="hidden" name="form-name" value="contacto">
+      <p hidden><label>No llenar <input name="bot-field"></label></p>
+      <div class="two">
+        <div class="field"><label for="c-name">Nombre</label><input id="c-name" name="nombre" required autocomplete="name"></div>
+        <div class="field"><label for="c-mail">Correo</label><input id="c-mail" name="correo" type="email" required autocomplete="email"></div>
+      </div>
+      <div class="field"><label for="c-subj">Tema</label>
+        <select id="c-subj" name="tema"><option>Servicios para marcas</option><option>The Travel People</option><option>The Wellness People</option><option>The Art People</option><option>Prensa y colaboraciones</option></select></div>
+      <div class="field"><label for="c-msg">Mensaje</label><textarea id="c-msg" name="mensaje" required></textarea></div>
+      <p class="note" id="c-err" hidden></p>
+      <div><button class="btn" type="submit">Enviar mensaje</button></div>
+      <p class="ok" id="c-ok" hidden></p>
+    </form>
+  </section>`;
+}
+
+function render(keepScroll){
+  const v=(location.hash||'#about').slice(1);
+  current=['about','travel','wellness','art','contact'].includes(v)?v:'about';
+  document.body.dataset.view=current;
+  document.querySelectorAll('.tab').forEach(t=>{if(t.dataset.v===current)t.setAttribute('aria-current','page');else t.removeAttribute('aria-current')});
+  $('#main').innerHTML=current==='about'?viewAbout():current==='contact'?viewContact():viewMedium(current);
+  if(!keepScroll)window.scrollTo(0,0);
+  if(window.createLemonSqueezy){try{window.createLemonSqueezy()}catch(_){}}
+}
+
+function openSheet(html){const s=$('#sheet');s.innerHTML=`<button class="close" data-close aria-label="Cerrar">×</button>`+html;$('#ov').hidden=false;document.body.style.overflow='hidden';s.querySelector('.close').focus()}
+function closeSheet(){$('#ov').hidden=true;document.body.style.overflow=''}
+
+function openNote(i){
+  const M=MEDIA[current],s=M.notes[i];if(!s)return;
+  openSheet(`<span class="label" style="color:var(--accent)">${nameHTML(M.name)}${s.k?' · '+esc(s.k):''}</span>
+   <h2>${esc(s.t)}</h2>${s.d?`<p class="dek">${esc(s.d)}</p>`:''}
+   <span class="meta label">${BOOK}<span>|</span><span>Lectura de ${esc(s.m)} min</span></span>
+   ${imgBlock(s,i,'tall')}
+   <div class="body">${s.body.map(p=>`<p>${esc(p)}</p>`).join('')}</div>
+   ${M.guides.length?`<div><a class="btn ghost" href="#${current}" data-close data-goguides>Ver guías de ${nameHTML(M.name)}</a></div>`:''}`);
+}
+
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-note],[data-close],[data-copy],[data-jump],.overlay');
+  if(!t)return;
+  if(t.matches('.overlay')&&e.target!==t)return;
+  if(t.dataset.note!==undefined)openNote(+t.dataset.note);
+  else if(t.dataset.jump){e.preventDefault();const el=document.getElementById(t.dataset.jump);if(el)el.scrollIntoView({behavior:'smooth'})}
+  else if(t.dataset.copy){const v=t.dataset.copy;const done=()=>{t.textContent='Copiado';setTimeout(()=>t.textContent='Copiar',1600)};
+    try{navigator.clipboard.writeText(v).then(done,()=>sel(t))}catch(_){sel(t)}}
+  else if(t.matches('[data-close],.overlay')){if(t.dataset.goguides!==undefined){e.preventDefault();closeSheet();const g=document.getElementById('guias');if(g)g.scrollIntoView({behavior:'smooth'})}else closeSheet()}
+});
+function sel(btn){const m=btn.previousElementSibling;const r=document.createRange();r.selectNodeContents(m);const s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Selecciona y copia'}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#ov').hidden)closeSheet()});
+document.addEventListener('submit',e=>{
+  if(e.target.id!=='cform')return;e.preventDefault();
+  const n=$('#c-name').value.trim(),m=$('#c-mail').value.trim(),msg=$('#c-msg').value.trim(),er=$('#c-err'),ok=$('#c-ok'),f=e.target;
+  if(!n||!/^\S+@\S+\.\S+$/.test(m)||!msg){er.textContent='Falta tu nombre, un correo válido o el mensaje.';er.hidden=false;return}
+  er.hidden=true;
+  fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(f)).toString()})
+   .then(r=>{if(!r.ok)throw 0;f.reset();ok.hidden=false;ok.textContent='Gracias. Recibimos tu mensaje y te escribimos pronto.'})
+   .catch(()=>{er.textContent='No se pudo enviar. Escríbenos directo a contacto@monarkpr.co.';er.hidden=false});
+});
+window.addEventListener('hashchange',()=>render());
+render();
+Promise.all(Object.keys(MEDIA).map(k=>fetch('/data/'+k+'.json',{cache:'no-cache'}).then(r=>r.ok?r.json():{}).catch(()=>({})).then(d=>adapt(k,d))))
+  .then(()=>{if(current!=='contact')render(true)});
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+{
+  "notas": [
+    {
+      "titulo": "El temazcal volvió, y no como moda",
+      "seccion": "Rituales",
+      "bajada": "Un ritual antiguo encuentra lugar en hoteles y casas. Cómo distinguir una ceremonia cuidada de un show.",
+      "minutos": 5,
+      "foto": "",
+      "pie_de_foto": "Temazcal",
+      "cuerpo": "El temazcal tiene siglos de historia en México. Hoy aparece en menús de spa y en retiros de fin de semana, con resultados muy distintos.\n\nUna buena ceremonia tiene a alguien que la conduce con conocimiento, un espacio limpio y tiempo antes y después. Si te la venden en treinta minutos, no es lo mismo."
+    },
+    {
+      "titulo": "Dormir mejor empieza en la tarde",
+      "seccion": "Hábitos",
+      "bajada": "Lo que haces a las seis decide cómo duermes a las once.",
+      "minutos": 3,
+      "foto": "",
+      "pie_de_foto": "Tarde",
+      "cuerpo": "Luz natural en la mañana, café antes del mediodía y una cena que no llegue tarde. Las rutinas simples son las que se sostienen.\n\nJuntamos lo que repiten quienes trabajan en hoteles enfocados en descanso."
+    },
+    {
+      "titulo": "Spas de hotel que valen el viaje",
+      "seccion": "Lugares",
+      "bajada": "A veces el tratamiento es la razón para reservar el cuarto.",
+      "minutos": 4,
+      "foto": "",
+      "pie_de_foto": "Spa",
+      "cuerpo": "Un buen spa de hotel se reconoce por sus terapeutas, no por su mármol. Pregunta cuánto tiempo llevan ahí y qué técnicas usan.\n\nEn la guía de spas reunimos los que elegiríamos para un fin de semana completo."
+    },
+    {
+      "titulo": "Caminar la ciudad temprano",
+      "seccion": "Movimiento",
+      "bajada": "La mejor rutina de ejercicio no necesita membresía.",
+      "minutos": 2,
+      "foto": "",
+      "pie_de_foto": "Ciudad, 6 am",
+      "cuerpo": "Antes de las siete la ciudad es otra. Las calles están vacías, el aire es más limpio y los parques tienen otro público.\n\nUna hora a pie cambia el resto del día."
+    },
+    {
+      "titulo": "Lo que un retiro de silencio le enseña a una agenda llena",
+      "seccion": "Mente",
+      "bajada": "Tres días sin hablar, y lo que quedó al volver.",
+      "minutos": 4,
+      "foto": "",
+      "pie_de_foto": "Retiro",
+      "cuerpo": "El primer día cuesta. El segundo se vuelve claro lo mucho que hablamos para llenar huecos. El tercero, el silencio se siente como descanso.\n\nAl volver, la agenda era la misma. La forma de decir que no, ya no."
+    }
+  ],
+  "guias": [
+    {
+      "titulo": "Retiros en México",
+      "edicion": "Edición 01",
+      "descripcion": "Dónde ir a desconectarse de verdad, según el tiempo que tengas.",
+      "precio": 390,
+      "paginas": 40,
+      "portada": "",
+      "link_de_compra": ""
+    },
+    {
+      "titulo": "El fin de semana sin pantalla",
+      "edicion": "Edición 02",
+      "descripcion": "Un plan de dos días para soltar el teléfono, con lugares y horarios.",
+      "precio": 290,
+      "paginas": 24,
+      "portada": "",
+      "link_de_compra": ""
+    },
+    {
+      "titulo": "Spas de hotel",
+      "edicion": "Edición 03",
+      "descripcion": "Los spas que elegiríamos para reservar el cuarto por ellos.",
+      "precio": 350,
+      "paginas": 32,
+      "portada": "",
+      "link_de_compra": ""
+    }
+  ]
+}

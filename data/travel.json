@@ -1,0 +1,78 @@
+{
+  "notas": [
+    {
+      "titulo": "Mérida ya no es secreto. Ahora le toca cuidar lo que tiene",
+      "seccion": "Ciudades",
+      "bajada": "La ciudad blanca recibe más viajeros que nunca. Las casonas restauradas, los cenotes y la mesa yucateca piden otra forma de visitarla.",
+      "minutos": 5,
+      "foto": "",
+      "pie_de_foto": "Mérida",
+      "cuerpo": "Mérida pasó de escala a destino. Las casonas del centro se volvieron hoteles de pocos cuartos, los mercados se llenaron de visitantes y la mesa yucateca se sirve en restaurantes que antes no existían.\n\nLa pregunta ya no es si vale la pena ir. Es cómo ir sin convertir la ciudad en otra cosa. Madrugar, caminar el centro antes del calor, comer donde comen los meridanos y salir a los pueblos sin prisa.\n\nEsta nota abre la edición de The Travel People dedicada a la península. La guía completa, con direcciones, está en la sección de guías."
+    },
+    {
+      "titulo": "El Valle de Guadalupe en temporada baja",
+      "seccion": "Rutas",
+      "bajada": "Sin filas, sin bodas, con tiempo para hablar con quien hace el vino.",
+      "minutos": 4,
+      "foto": "",
+      "pie_de_foto": "Valle de Guadalupe",
+      "cuerpo": "Fuera de la vendimia el Valle cambia de ritmo. Las mesas se consiguen, las catas son más largas y los productores tienen tiempo de contar cómo trabajan.\n\nConviene ir entre semana, dormir en el valle y no en Ensenada, y dejar una tarde libre para lo que surja en el camino."
+    },
+    {
+      "titulo": "Hoteles pequeños, cuartos contados",
+      "seccion": "Hospedaje",
+      "bajada": "Por qué los mejores viajes de este año caben en menos de veinte habitaciones.",
+      "minutos": 3,
+      "foto": "",
+      "pie_de_foto": "Oaxaca",
+      "cuerpo": "Un hotel chico se nota desde la llegada. Te llaman por tu nombre, el desayuno no tiene buffet y la recomendación para cenar es personal.\n\nJuntamos los criterios que usamos para elegirlos: escala, oficio local, una cocina con voz propia y alguien en la puerta que conozca la ciudad."
+    },
+    {
+      "titulo": "Qué pedir en un mercado antes de las diez",
+      "seccion": "Mesa",
+      "bajada": "El desayuno de mercado es el mejor de cualquier ciudad mexicana. Hay que llegar temprano.",
+      "minutos": 3,
+      "foto": "",
+      "pie_de_foto": "Mercado",
+      "cuerpo": "Las cocinas de mercado sirven su mejor comida temprano. A las diez ya se acabó lo que se hizo en la madrugada.\n\nPide lo que ves en las mesas de al lado, pregunta qué es del día y lleva efectivo."
+    },
+    {
+      "titulo": "Viajar con una sola maleta, de verdad",
+      "seccion": "Oficio",
+      "bajada": "Una lista corta para ir a cualquier lado durante diez días.",
+      "minutos": 2,
+      "foto": "",
+      "pie_de_foto": "Equipaje",
+      "cuerpo": "La maleta de mano obliga a decidir. Tres colores que combinen, un buen abrigo y zapatos que sirvan para caminar y para cenar.\n\nLo demás se compra allá, y casi siempre sale mejor."
+    }
+  ],
+  "guias": [
+    {
+      "titulo": "The Milken Guide",
+      "edicion": "Edición 01",
+      "descripcion": "La guía que dio origen al sello. Direcciones elegidas para quienes asistieron al foro.",
+      "precio": 390,
+      "paginas": 48,
+      "portada": "",
+      "link_de_compra": ""
+    },
+    {
+      "titulo": "Mérida en 48 horas",
+      "edicion": "Edición 02",
+      "descripcion": "Casonas, cocinas, cenotes y pueblos cercanos, en un fin de semana bien trazado.",
+      "precio": 350,
+      "paginas": 36,
+      "portada": "",
+      "link_de_compra": ""
+    },
+    {
+      "titulo": "Ciudad de México: Direcciones",
+      "edicion": "Edición 03",
+      "descripcion": "Colonia por colonia. Dónde dormir, comer, comprar y sentarse a ver la ciudad.",
+      "precio": 450,
+      "paginas": 64,
+      "portada": "",
+      "link_de_compra": ""
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "notas": [
+    {
+      "titulo": "Las galerías chicas de la Ciudad de México",
+      "seccion": "Ciudad",
+      "bajada": "Fuera del circuito de ferias hay espacios pequeños que vale la pena seguir.",
+      "minutos": 4,
+      "foto": "",
+      "pie_de_foto": "Galería",
+      "cuerpo": "Las galerías chicas son donde aparecen los artistas antes de llegar a las ferias. Tienen horarios cortos, inauguraciones llenas y dueños que contestan preguntas.\n\nArmamos un recorrido de una tarde, a pie, con paradas para café."
+    },
+    {
+      "titulo": "Cómo empezar una colección sin herencia",
+      "seccion": "Coleccionar",
+      "bajada": "No hace falta un apellido para comprar la primera pieza. Hace falta criterio y paciencia.",
+      "minutos": 5,
+      "foto": "",
+      "pie_de_foto": "Obra en papel",
+      "cuerpo": "La primera pieza casi nunca es la más cara. Suele ser obra en papel, una edición o un artista que empieza.\n\nCompra lo que quieras ver todos los días, pregunta por la procedencia y guarda cada factura."
+    },
+    {
+      "titulo": "La semana del arte, una semana después",
+      "seccion": "Ferias",
+      "bajada": "Lo que se queda cuando se van los visitantes.",
+      "minutos": 3,
+      "foto": "",
+      "pie_de_foto": "Feria",
+      "cuerpo": "La semana del arte llena la ciudad de fiestas y cenas. Lo que importa empieza después, cuando las galerías vuelven a abrir con calma.\n\nEs el mejor momento para regresar a ver con tiempo lo que se vio de prisa."
+    },
+    {
+      "titulo": "El taller textil en Oaxaca",
+      "seccion": "Oficio",
+      "bajada": "Telar, tinte natural y familias que heredan la técnica.",
+      "minutos": 4,
+      "foto": "",
+      "pie_de_foto": "Telar",
+      "cuerpo": "En los talleres oaxaqueños una pieza puede tomar semanas. El tinte, el hilado y el tejido pasan por manos distintas dentro de la misma familia.\n\nVisitar un taller es entender por qué esa pieza cuesta lo que cuesta."
+    },
+    {
+      "titulo": "Por qué una casa necesita una sola pieza buena",
+      "seccion": "Interiores",
+      "bajada": "Mejor una obra que diez decoraciones.",
+      "minutos": 2,
+      "foto": "",
+      "pie_de_foto": "Interior",
+      "cuerpo": "Una pieza buena ordena el cuarto entero. Todo lo demás se acomoda alrededor.\n\nEmpieza por la pared que ves al llegar."
+    }
+  ],
+  "guias": [
+    {
+      "titulo": "Galerías de la Ciudad de México",
+      "edicion": "Edición 01",
+      "descripcion": "Un mapa de galerías por colonia, con horarios y qué esperar de cada una.",
+      "precio": 350,
+      "paginas": 40,
+      "portada": "",
+      "link_de_compra": ""
+    },
+    {
+      "titulo": "Primer coleccionista",
+      "edicion": "Edición 02",
+      "descripcion": "Cómo comprar, dónde, cuánto y qué preguntar. Una guía práctica para empezar.",
+      "precio": 420,
+      "paginas": 44,
+      "portada": "",
+      "link_de_compra": ""
+    },
+    {
+      "titulo": "Talleres de Oaxaca",
+      "edicion": "Edición 03",
+      "descripcion": "Textil, barro y madera. Talleres que reciben visitas y cómo llegar.",
+      "precio": 390,
+      "paginas": 36,
+      "portada": "",
+      "link_de_compra": ""
+    }
+  ]
+}
